@@ -75,10 +75,3 @@ while number_states_guessed < 51:
                         message_turtle.write("Congratulations, you're the smartest person in the world!", align="center", font=("Nunito", 16, "bold"))
 
                         screen.exitonclick() # Close the game screen on click
-                
-
-
-               
-                
-                
-              
