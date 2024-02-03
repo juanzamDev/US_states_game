@@ -17,20 +17,30 @@ df = pandas.read_csv("50_states.csv")
 # Set count variables
 guessed_states = []
 number_states_guessed = 0
+states_to_learn = []
 
 # Game loop - runs until all states are guessed or user exits
 while number_states_guessed < 51:
     
     # Prompt user for a state name
-    answer_state = screen.textinput(title=f"{number_states_guessed}/50 States correct", prompt="What's the state name?") # User Choice
+    answer_state = screen.textinput(title=f"{number_states_guessed}/50 States correct", prompt="What's the state name?").lower() # User Choice
+    if answer_state == "exit":
+        for states in df.state:
+            if states in guessed_states:
+                states_to_learn.append(states)
+                data = pandas.DataFrame(states_to_learn, columns=['States to learn'])
+                data.to_csv("states_to_learn.csv")
+                break
 
     # Loop through all states in the dataframe
     for state in df.state: 
         if answer_state:  # Ensure there is an input to avoid error on NoneType
-            lower_answer = answer_state.lower() # Lowercase user answer
-            if lower_answer == state.lower(): # Compare states
-                if lower_answer in guessed_states: # Check if the state has already been guessed
+            if answer_state == state.lower(): # Compare states
+                if answer_state in guessed_states: # Check if the state has already been guessed
                     # Display message if state has already been guessed
+
+
+                    
                     message_turtle = turtle.Turtle()
                     message_turtle = turtle.Turtle()
                     message_turtle.hideturtle()  # Hide the turtle icon
@@ -74,4 +84,4 @@ while number_states_guessed < 51:
                         # Write the message
                         message_turtle.write("Congratulations, you're the smartest person in the world!", align="center", font=("Nunito", 16, "bold"))
 
-                        screen.exitonclick() # Close the game screen on click
+                        # screen.exitonclick() # Close the game screen on click
