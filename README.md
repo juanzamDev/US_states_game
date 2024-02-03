@@ -18,8 +18,8 @@ Before you begin, ensure you have met the following requirements:
 - Python 3 installed on your machine.
 - The `turtle` and `pandas` Python libraries installed. You can install them using pip:
 
-- pip install turtle
-- pip install pandas
+- `pip install turtle`
+- `pip install pandas`
 
 - The game requires a CSV file named `50_states.csv` containing the states' names and their corresponding coordinates on the map.
 - A GIF image named `blank_states_img.gif` representing a blank map of the U.S.
