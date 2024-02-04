@@ -20,7 +20,7 @@ number_states_guessed = 0
 states_to_learn = []
 
 # Game loop - runs until all states are guessed or user exits
-while number_states_guessed <= 3:
+while number_states_guessed <= 50:
     
     # Prompt user for a state name
     answer_state = screen.textinput(title=f"{number_states_guessed}/50 States correct", prompt="What's the state name? (Type exit to report)").lower() # User Choice
@@ -87,7 +87,7 @@ while number_states_guessed <= 3:
                     state_name_turtle.write(state)  # Write the state name at the location
 
                     # Check if all states have been guessed
-                    if len(guessed_states) == 3:
+                    if len(guessed_states) == 50:
                      
                         # Display completion message
                         message_turtle = turtle.Turtle()
