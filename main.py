@@ -28,21 +28,17 @@ while number_states_guessed <= 50:
     # Check if the user's input is "exit" to quit the guessing game or current process
     if answer_state == "exit":
         # Iterate through each state in the DataFrame column 'state'
-        for state in df.state:
-            # Convert the state name to lowercase and check if it's not in the list of guessed states
-            if not state.lower() in guessed_states:
-                # If the state hasn't been guessed, append it to the list of states to learn
-                states_to_learn.append(state)
-                
-                # Create a DataFrame from the list of states to learn with a single column titled 'States to learn'
-                data = pandas.DataFrame(states_to_learn, columns=['States to learn'])
-                
-                # Adjust the DataFrame index to start from 1 for a more human-readable format
-                data.index = range(1, len(data) + 1)
-                
-                # Save the DataFrame to a CSV file, with the index labeled as 'N' starting from 1
-                data.to_csv("states_to_learn.csv", index_label="N")
+        states_to_learn = [state for state in df.state if not state.lower() in guessed_states]
         
+        # Create a DataFrame from the list of states to learn with a single column titled 'States to learn'
+        data = pandas.DataFrame(states_to_learn, columns=['States to learn'])
+            
+        # Adjust the DataFrame index to start from 1 for a more human-readable format
+        data.index = range(1, len(data) + 1)
+        
+        # Save the DataFrame to a CSV file, with the index labeled as 'N' starting from 1
+        data.to_csv("states_to_learn.csv", index_label="N")
+
         # Break out of the loop or exit the program after saving the CSV file
         break
 
